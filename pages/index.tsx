@@ -2,8 +2,11 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import clientPromise from '../lib/mongodb';
+import {Db, InferIdType, MongoClient} from "mongodb";
 
-const Home: NextPage = () => {
+const Home: NextPage<any> = ({list}) => {
+  console.log(list)
   return (
     <div className={styles.container}>
       <Head>
@@ -70,3 +73,27 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+interface IData {
+  _id: string,
+  item: string,
+  qty: number
+}
+export async function getServerSideProps() {
+  try {
+    const client: MongoClient = await clientPromise
+    const db: Db = client.db('test')
+    //@ts-ignore
+    let list: IData =  await db.collection('inventory').findOne({item: 'canvas'});
+    //@ts-ignore
+    list = JSON.stringify(list)
+    return {
+      props: { isConnected: true, list},
+    }
+  } catch (e) {
+    console.error(e)
+    return {
+      props: { isConnected: false },
+    }
+  }
+}
