@@ -29,7 +29,7 @@ export default Main
 // @ts-ignore
 export async function getServerSideProps() {
   try {
-    const res = await fetch(mainHost + apiGetMain + 'en')
+    const res = await fetch(mainHost + apiGetMain)
     const data = await res.json()
     return {
       props: { isConnected: true, list: data},
