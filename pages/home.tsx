@@ -5,7 +5,7 @@ import clientPromise from '../lib/mongodb';
 import {Db, InferIdType, MongoClient} from "mongodb";
 import {apiGetMain, mainHost} from "../constants/urls";
 import {useRouter} from "next/router";
-import {useState} from "react";
+import React, {useState} from "react";
 import {NextPage} from "next";
 
 
@@ -13,8 +13,14 @@ import {NextPage} from "next";
 const Home: NextPage<any> = ({list, p}) => {
     console.log(p)
     const router = useRouter()
-    const [lang, setLang] = useState('en')
+    // const [lang, setLang] = useState('en')
     console.log("Data",list)
+    const [value, setValue] = useState('en');
+
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+            setValue(event.target.value);
+            localStorage.setItem('vladosLang', value);
+    }
 
     return (
         <>
@@ -28,16 +34,14 @@ const Home: NextPage<any> = ({list, p}) => {
                 <h1 className={styles.title}>
                     Welcome to <a href="https://nextjs.org">Next.js!</a>
                 </h1>
-                <button
-                    type="button"
-                    onClick={() => {
-                        router.push({
-                            pathname: '/[lang]',
-                            query: { lang: "ua" },
-                        })
-                    }}
-                >language change
-                </button>
+                <select value={value} onChange={(e) => handleChange(e)}>
+                    <option value="en">enM</option>
+                    <option value="ua">uaM</option>
+                    <option value="ru">ruM</option>
+                </select>
+                <p>
+                    ваш выбор: {value}
+                </p>
                 <p className={styles.description}>
                     Get started by editing{' '}
                     <code className={styles.code}>pages/index.tsx</code>
