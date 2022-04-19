@@ -1,53 +1,54 @@
-import type { NextPage, GetServerSideProps } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import clientPromise from '../lib/mongodb';
-import {Db, InferIdType, MongoClient} from "mongodb";
-import {apiGetMain, mainHost} from "../constants/urls";
-import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
+import type { NextPage, GetServerSideProps } from "next";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+
+import styles from "../styles/Home.module.css";
+import { apiGetMain, mainHost } from "../constants/urls";
 import Home from "./home";
 import contantLang from "../utils/lang";
 
+const Main: NextPage<any> = ({ data, p }) => {
+  console.log(p);
+  const router = useRouter();
+  const [content, setContent] = useState();
+  const [lang, setLang] = useState("en");
+  console.log("DataN", content);
 
-
-const Main: NextPage<any> = ({data, p}) => {
-  console.log(p)
-  const router = useRouter()
-  const [content, setContent] = useState()
-  const [lang, setLang] = useState('en')
-  console.log("DataN",content)
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setLang(event.target.value);
+    localStorage.setItem("vladosLang", event.target.value);
+  };
   // @ts-ignore
-  useEffect( () => {
-    // let a = contantLang('ua', data)
-    // @ts-ignore
-
-    setContent(() => contantLang('ua', data))
-    // @ts-ignore
-    // setContent(localStorage.getItem("vladosLang") === 'ua' ? contantLang('ua', data) : localStorage.getItem("vladosLang") === 'ru' ? contantLang('ru', data) : contantLang('en', data) )
-
-  },[])
+  useEffect(() => {
+    //@ts-ignore
+    setContent(() =>
+      localStorage.getItem("vladosLang") === "ua"
+        ? contantLang("ua", data)
+        : localStorage.getItem("vladosLang") === "ru"
+        ? contantLang("ru", data)
+        : contantLang("en", data)
+    );
+  }, [lang]);
   return (
     <div className={styles.container}>
-        <Home />
+      <Home handleChange={handleChange} lang={lang} content={content} />
     </div>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;
 
-export const getServerSideProps: GetServerSideProps = async(context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
-    const res = await fetch(mainHost + apiGetMain)
-    const data = await res.json()
+    const res = await fetch(mainHost + apiGetMain);
+    const data = await res.json();
     return {
-      props: { isConnected: true, data},
-    }
+      props: { isConnected: true, data },
+    };
   } catch (e) {
-    console.error(e)
+    console.error(e);
     return {
       props: { isConnected: false },
-    }
+    };
   }
-}
+};
