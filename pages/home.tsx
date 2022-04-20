@@ -5,11 +5,18 @@ import clientPromise from "../lib/mongodb";
 import { Db, InferIdType, MongoClient } from "mongodb";
 import { apiGetMain, mainHost } from "../constants/urls";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { NextPage } from "next";
 import MainMenu from "../components/MainMenu";
+import { IDataLang } from "../interfaces/interfaces";
 
-const Home: NextPage<any> = ({ lang, handleChange, content }) => {
+interface IProp {
+  lang: string;
+  handleChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+  content?: IDataLang;
+}
+
+const Home: NextPage<IProp> = ({ lang, handleChange, content }) => {
   return (
     <>
       <Head>

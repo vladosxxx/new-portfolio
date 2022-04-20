@@ -6,11 +6,12 @@ import styles from "../styles/Home.module.css";
 import { apiGetMain, mainHost } from "../constants/urls";
 import Home from "./home";
 import contantLang from "../utils/lang";
+import { IDataLang } from "../interfaces/interfaces";
 
 const Main: NextPage<any> = ({ data, p }) => {
   console.log(p);
   const router = useRouter();
-  const [content, setContent] = useState();
+  const [content, setContent] = useState<IDataLang | undefined>();
   const [lang, setLang] = useState("en");
   console.log("DataN", content);
 
@@ -29,6 +30,7 @@ const Main: NextPage<any> = ({ data, p }) => {
         : contantLang("en", data)
     );
   }, [lang]);
+
   return (
     <div className={styles.container}>
       <Home handleChange={handleChange} lang={lang} content={content} />
@@ -43,12 +45,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const res = await fetch(mainHost + apiGetMain);
     const data = await res.json();
     return {
-      props: { isConnected: true, data },
+      props: { data },
     };
   } catch (e) {
     console.error(e);
     return {
-      props: { isConnected: false },
+      props: {},
     };
   }
 };

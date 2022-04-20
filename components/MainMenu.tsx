@@ -2,7 +2,11 @@
 import { useEffect } from "react";
 import { IMenu } from "../interfaces/interfaces";
 
-const MainMenu = ({ menu }: IMenu) => {
+interface IProp {
+  menu?: IMenu;
+}
+
+const MainMenu = ({ menu }: IProp) => {
   // const { projects, contacts, resume, startups } = menu;
   console.log("manu", menu);
   return (
