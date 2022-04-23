@@ -1,47 +1,35 @@
-// @ts-ignore
-import React, { useEffect } from "react";
+import React from "react";
 import { IMenu } from "../../interfaces/interfaces";
+import styles from "./MainMenu.module.css";
+import { Fragment } from "react";
+import { Popover, Transition } from "@headlessui/react";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import ButtonMain from "../ButtonMain/ButtonMain";
+import DropDown from "../DropDown/DropDown";
 
 interface IProp {
-  menu?: IMenu;
+  menu: IMenu;
+  lang: string;
+  handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const MainMenu = ({ menu }: IProp) => {
+const MainMenu = ({ menu, lang, handleChange }: IProp) => {
   const { projects, contacts, resume, startups } = menu || {};
   console.log("manu", menu);
   return (
-    <div className="well" id="well">
-      <div id="particles-js"></div>
-      <div id="button-top"></div>
-      <div className="panel">
-        <div className="menu">
-          <ul>
-            <li>
-              <a href="next/link" id="projects">
-                <div className="sign">
-                  <p>{projects}</p>
-                </div>
-              </a>
-              <a href="next/link" id="hire">
-                <div className="sign">
-                  <p>{contacts}</p>
-                </div>
-              </a>
-              <a href="next/link" id="resume">
-                <div className="sign">
-                  <p>{resume}</p>
-                </div>
-              </a>
-              <a href="next/link" id="startups">
-                <div className="sign">
-                  <p>{startups}</p>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <>
+      <ButtonMain text={projects} />
+      <ButtonMain text={resume} />
+      <ButtonMain text={startups} />
+      <ButtonMain text={contacts} />
+      {/*<DropDown lang={lang} handleChange={handleChange} />*/}
+      <ButtonMain
+        text={"Log in"}
+        textColor={"text-indigo-600"}
+        textHover={"hover:text-indigo-500"}
+        buttonHover={"hover:bg-indigo-200"}
+      />
+    </>
   );
 };
 

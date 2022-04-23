@@ -7,12 +7,13 @@ import { apiGetMain, mainHost } from "../constants/urls";
 import Home from "./home";
 import contantLang from "../utils/lang";
 import { IDataLang } from "../interfaces/interfaces";
+import { language } from "../constants/data";
+import DropDown from "../components/DropDown/DropDown";
 
 const Main: NextPage<any> = ({ data, p }) => {
   console.log(p);
-  const router = useRouter();
-  const [content, setContent] = useState<IDataLang | undefined>();
-  const [lang, setLang] = useState("en");
+  const [content, setContent] = useState<IDataLang>({});
+  const [lang, setLang] = useState(language[1].type);
   console.log("DataN", content);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -23,17 +24,18 @@ const Main: NextPage<any> = ({ data, p }) => {
   useEffect(() => {
     //@ts-ignore
     setContent(() =>
-      localStorage.getItem("vladosLang") === "ua"
-        ? contantLang("ua", data)
-        : localStorage.getItem("vladosLang") === "ru"
-        ? contantLang("ru", data)
-        : contantLang("en", data)
+      localStorage.getItem("vladosLang") === language[1].type
+        ? contantLang(language[1].type, data)
+        : localStorage.getItem("vladosLang") === language[2].type
+        ? contantLang(language[2].type, data)
+        : contantLang(language[0].type, data)
     );
   }, [lang]);
 
   return (
     <div className={styles.container}>
       <Home handleChange={handleChange} lang={lang} content={content} />
+      <DropDown />
     </div>
   );
 };
