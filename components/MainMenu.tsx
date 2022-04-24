@@ -1,11 +1,11 @@
 import React from "react";
-import { IMenu } from "../../interfaces/interfaces";
+import { IMenu } from "../interfaces/interfaces";
 import styles from "./MainMenu.module.css";
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import ButtonMain from "../ButtonMain/ButtonMain";
-import DropDown from "../DropDown/DropDown";
+import ButtonMain from "./ButtonMain";
+import DropDown from "./DropDown";
 
 interface IProp {
   menu: IMenu;
@@ -22,7 +22,6 @@ const MainMenu = ({ menu, lang, handleChange }: IProp) => {
       <ButtonMain text={resume} />
       <ButtonMain text={startups} />
       <ButtonMain text={contacts} />
-      {/*<DropDown lang={lang} handleChange={handleChange} />*/}
       <ButtonMain
         text={"Log in"}
         textColor={"text-indigo-600"}

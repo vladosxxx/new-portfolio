@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import React, { ChangeEvent, Fragment, useEffect, useState } from "react";
 import { NextPage } from "next";
-import MainMenu from "../components/MainMenu/MainMenu";
+import MainMenu from "../components/MainMenu";
 import { IDataLang } from "../interfaces/interfaces";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";

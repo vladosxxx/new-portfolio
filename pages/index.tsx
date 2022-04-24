@@ -8,11 +8,12 @@ import Home from "./home";
 import contantLang from "../utils/lang";
 import { IDataLang } from "../interfaces/interfaces";
 import { language } from "../constants/data";
-import DropDown from "../components/DropDown/DropDown";
+import DropDown from "../components/DropDown";
 
 const Main: NextPage<any> = ({ data, p }) => {
   console.log(p);
-  const [content, setContent] = useState<IDataLang>({});
+  //@ts-ignore
+  const [content, setContent] = useState<IDataLang>();
   const [lang, setLang] = useState(language[1].type);
   console.log("DataN", content);
 
