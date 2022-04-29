@@ -8,7 +8,7 @@ import ButtonMain from "./ButtonMain";
 import DropDown from "./DropDown";
 
 interface IProp {
-  menu: IMenu;
+  menu?: IMenu;
   lang: string;
   handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }

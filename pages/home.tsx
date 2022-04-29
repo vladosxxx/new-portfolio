@@ -11,7 +11,7 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 interface IProp {
   lang: string;
   handleChange: (e: ChangeEvent<HTMLSelectElement>) => void;
-  content: IDataLang;
+  content?: IDataLang;
 }
 
 const Home = ({ lang, handleChange, content }: IProp) => {
@@ -77,7 +77,7 @@ const Home = ({ lang, handleChange, content }: IProp) => {
                       </div>
                       <div className="hidden md:block md:ml-10 md:pr-4 md:space-x-1">
                         <MainMenu
-                          menu={content.menu}
+                          menu={content?.menu}
                           lang={lang}
                           handleChange={handleChange}
                         />
@@ -115,11 +115,11 @@ const Home = ({ lang, handleChange, content }: IProp) => {
                           </div>
                         </div>
                         <div className="px-2 pt-2 pb-3 space-y-1">
-                          <MainMenu
-                            menu={content.menu}
-                            lang={lang}
-                            handleChange={handleChange}
-                          />
+                          {/*<MainMenu*/}
+                          {/*  menu={content?.menu}*/}
+                          {/*  lang={lang}*/}
+                          {/*  handleChange={handleChange}*/}
+                          {/*/>*/}
                           {/*<a*/}
                           {/*  href="#"*/}
                           {/*  className="font-medium text-indigo-600 hover:text-indigo-500"*/}

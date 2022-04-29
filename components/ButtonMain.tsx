@@ -2,7 +2,7 @@ import React from "react";
 
 //@ts-ignore
 interface IProps {
-  text: string;
+  text?: string;
   textColor?: string;
   textHover?: string;
   buttonHover?: string;
@@ -18,10 +18,7 @@ const ButtonMain = ({
       className={`${buttonHover} text-white font-bold py-4 px-6 rounded-full`}
       href="next/link"
     >
-      <span
-        // key={item.name}
-        className={`font-medium ${textColor} ${textHover}`}
-      >
+      <span key={text} className={`font-medium ${textColor} ${textHover}`}>
         {text}
       </span>
     </a>

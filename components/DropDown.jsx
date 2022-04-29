@@ -28,6 +28,7 @@ export default function DropDown() {
             </span>
           </Listbox.Button>
           <Transition
+            appear={true}
             open={true}
             as={Fragment}
             leave="transition ease-in duration-100"
