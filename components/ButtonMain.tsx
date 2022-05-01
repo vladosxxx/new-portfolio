@@ -6,21 +6,21 @@ interface IProps {
   textColor?: string;
   textHover?: string;
   buttonHover?: string;
+  styles?: string;
 }
 const ButtonMain = ({
   text,
-  textColor = "text-gray-500",
-  textHover = "hover:text-gray-900",
-  buttonHover = "hover:bg-slate-100",
+  textColor,
+  textHover,
+  buttonHover,
+  styles,
 }: IProps) => {
   return (
     <a
-      className={`${buttonHover} text-white font-bold py-4 px-6 rounded-full`}
+      className={`${buttonHover} ${styles} ${textColor} ${textHover}`}
       href="next/link"
     >
-      <span key={text} className={`font-medium ${textColor} ${textHover}`}>
-        {text}
-      </span>
+      {text}
     </a>
   );
 };

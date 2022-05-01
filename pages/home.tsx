@@ -80,6 +80,10 @@ const Home = ({ lang, handleChange, content }: IProp) => {
                           menu={content?.menu}
                           lang={lang}
                           handleChange={handleChange}
+                          textColor={"text-gray-500"}
+                          textHover={"hover:text-gray-900"}
+                          buttonHover={"hover:bg-slate-100"}
+                          styles={"text-white font-bold py-4 px-6 rounded-full"}
                         />
                       </div>
                     </nav>
@@ -115,11 +119,19 @@ const Home = ({ lang, handleChange, content }: IProp) => {
                           </div>
                         </div>
                         <div className="px-2 pt-2 pb-3 space-y-1">
-                          {/*<MainMenu*/}
-                          {/*  menu={content?.menu}*/}
-                          {/*  lang={lang}*/}
-                          {/*  handleChange={handleChange}*/}
-                          {/*/>*/}
+                          <MainMenu
+                            menu={content?.menu}
+                            lang={lang}
+                            handleChange={handleChange}
+                            textColor={"text-gray-700"}
+                            textHover={"hover:te  xt-gray-900"}
+                            buttonHover={"hover:bg-gray-50"}
+                            styles={
+                              "block px-3 py-2 rounded-md text-base font-medium"
+                            }
+                          />
+                          {/*className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"*/}
+
                           {/*<a*/}
                           {/*  href="#"*/}
                           {/*  className="font-medium text-indigo-600 hover:text-indigo-500"*/}
